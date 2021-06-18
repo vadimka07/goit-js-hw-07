@@ -6,10 +6,24 @@ const ingredients = [
     'Зелень',
     'Приправы',
 ];
-const ingredientsContainer = document.querySelector('#ingredients');
-ingredients.forEach((item) => {
+
+// ВАРИАНТ ОДИН
+const ingredientsList = document.querySelector('#ingredients');
+const ingredientsList2 = document.createElement('ul');
+ingredientsList2.id = 'ingredients2';
+const fragmentDoc = new DocumentFragment();
+const listItems = ingredients.map((item) => {
     const listItem          = document.createElement('li');
     listItem.textContent    = item;
-    ingredientsContainer.append(listItem);
-    console.log(listItem);
+    return listItem;
 });
+ingredientsList.append(...listItems);
+
+// ВАРИАНТ ДВА
+document.body.insertBefore(ingredientsList2, document.querySelector('script[type=module]'));
+ingredients.map((item) => {
+    const listItem          = document.createElement('li');
+    listItem.textContent    = item;
+    fragmentDoc.appendChild(listItem);
+});
+ingredientsList2.append(fragmentDoc);

@@ -17,6 +17,8 @@ const gallery = document.getElementById('gallery');
     gallery.style.display               = 'grid';
     gallery.style.gridTemplateColumns   = '1fr 1fr 1fr';
     gallery.style.textAlign             = 'center';
+    const imageOutput = [];
 images.forEach((image) => {
-    gallery.insertAdjacentHTML('beforeend', `<li> <img src="${image.url}" alt="${image.alt}" width="250"> </li>`)
+    imageOutput.push(`<li> <img src="${image.url}" alt="${image.alt}" width="250"> </li>`);
 })
+    gallery.insertAdjacentHTML('beforeend', imageOutput.join(''));
